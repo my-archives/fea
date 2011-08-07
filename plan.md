@@ -51,9 +51,9 @@ Front-end Architecture <br/>
     * 广播模式 + 观察者模式
     * AOP模式
 
-### ** II. 模拟实际产品，对 fea.js 进行测试（不依赖其他类库）**
-### ** III. fea.js 结合 jquery，kissy，yui 进行测试**
-### ** IV. 对具体页面进行模拟重构**
+### **II. 模拟实际产品，对 fea.js 进行测试（不依赖其他类库）**
+### **III. fea.js 结合 jquery，kissy，yui 进行测试**
+### **IV. 对具体页面进行模拟重构**
     * url 重新设计、定义
     * 实现对页面 history 进行监听、控制(hashChange/iframe)
     * 实现对前端模板化，后台只返回数据(json)

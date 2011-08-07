@@ -12,7 +12,7 @@ Front-end Architecture <br/>
 
 ## 计划
 
-### ***fea.js***
+### **I. fea.js**
 搭建一个由 Module、Sandbox、AppCore 组成的类库 fea.js，这个类库不依赖其他类库(jQuery,YUI,kissy)。
 它是整个页面，乃至整个网站的应用的管理中心。
 
@@ -51,9 +51,9 @@ Front-end Architecture <br/>
     * 广播模式 + 观察者模式
     * AOP模式
 
-### ***模拟实际产品，对 fea.js 进行测试（不依赖其他类库）***
-### ***fea.js 结合 jquery，kissy，yui 进行测试***
-### ***对具体页面进行模拟重构***
+### ** II. 模拟实际产品，对 fea.js 进行测试（不依赖其他类库）**
+### ** III. fea.js 结合 jquery，kissy，yui 进行测试**
+### ** IV. 对具体页面进行模拟重构**
     * url 重新设计、定义
     * 实现对页面 history 进行监听、控制(hashChange/iframe)
     * 实现对前端模板化，后台只返回数据(json)

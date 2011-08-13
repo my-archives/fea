@@ -1,4 +1,4 @@
-<project name="fea.build" default="concat" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
+<project name="fea.build" default="build" basedir="." xmlns:ac="antlib:net.sf.antcontrib">
     <description>Fea Build File</description>
 
     <!-- Common Setting -->
@@ -12,8 +12,11 @@
     <property name="lib.dir" value="${root.dir}/lib" />
     <property name="test.dir" value="${root.dir}/test" />
 
-    <property name="core.files" value="fea.js, kernel.js, module.js, sandbox.js" />
+    <property name="core.files" value="fea.js, kernel.js, storage.js, module.js, sandbox.js, define.js, app.js" />
 
+    <target name="build" depends="concat,replace"></target>
+
+    <!--合并文件-->
     <target name="concat">
         <echo message="${core.files}" />
         <concat destfile="${test.dir}/js/fea.js" encoding="${charset}"
@@ -21,9 +24,19 @@
             <!--<filelist dir="${lib.dir}" files="${core.files}" />-->
             <path path="${lib.dir}/fea.js"/>
             <path path="${lib.dir}/kernel.js"/>
+            <path path="${lib.dir}/storage.js"/>
             <path path="${lib.dir}/module.js"/>
             <path path="${lib.dir}/sandbox.js"/>
+            <path path="${lib.dir}/define.js"/>
+            <path path="${lib.dir}/app.js"/>
         </concat>
+    </target>
+    
+    <!--更新版本号-->
+    <target name="replace">
+        <replaceregexp match="@VERSION@" replace="${version}" flags="g" encoding="${charset}">
+            <fileset dir="${test.dir}/js" includes="fea.js"/>
+        </replaceregexp>
     </target>
 
 </project>

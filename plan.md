@@ -57,6 +57,6 @@ Front-end Architecture <br/>
 * url 重新设计、定义
 * 实现对页面 history 进行监听、控制(hashChange/iframe)
 * 实现对前端模板化，后台只返回数据(json)
-* 实现 module 分块加载、渲染(BigPipe)
+* 实现 module 分块加载、渲染(后端: BigPipe, 前端: Quickling)
 * 利用 base library，搭建一个适合我们自己的组件库
 * 前端 js、css 可以按需加载、异步加载、并行加载、模块化加载

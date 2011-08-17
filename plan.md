@@ -9,6 +9,7 @@ Front-end Architecture <br/>
 
 ## 相关文章
 * [Scalable JavaScript Application Architecture](http://developer.yahoo.com/yui/theater/video.php?v=zakas-architecture)
+* [Managing JavaScript Objects](http://msdn.microsoft.com/zh-cn/scriptjunkie/gg314983(en-us).aspx)
 
 ## 计划
 

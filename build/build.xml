@@ -12,9 +12,9 @@
     <property name="lib.dir" value="${root.dir}/lib" />
     <property name="test.dir" value="${root.dir}/test" />
 
-    <property name="core.files" value="fea.js, until.js, kernel.js, storage.js, module.js, sandbox.js, define.js, app.js" />
+    <property name="core.files" value="fea.js, utils.js, kernel.js, storage.js, module.js, sandbox.js, define.js, app.js" />
 
-    <target name="build" depends="concat,replace"></target>
+    <target name="build" depends="concat,prepare"></target>
 
     <!--合并文件-->
     <target name="concat">
@@ -23,7 +23,7 @@
             outputencoding="${charset}">
             <!--<filelist dir="${lib.dir}" files="${core.files}" />-->
             <path path="${lib.dir}/fea.js"/>
-            <path path="${lib.dir}/until.js"/>
+            <path path="${lib.dir}/utils.js"/>
             <path path="${lib.dir}/kernel.js"/>
             <path path="${lib.dir}/storage.js"/>
             <path path="${lib.dir}/module.js"/>
@@ -34,7 +34,7 @@
     </target>
     
     <!--更新版本号-->
-    <target name="replace">
+    <target name="prepare">
         <replaceregexp match="@VERSION@" replace="${version}" flags="g" encoding="${charset}">
             <fileset dir="${test.dir}/js" includes="fea.js"/>
         </replaceregexp>

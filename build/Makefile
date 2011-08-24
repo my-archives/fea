@@ -3,12 +3,14 @@ LIB_DIR = ${ROOT_DIR}/lib
 TEST_DIR = ${ROOT_DIR}/test
 TOOLS_DIR = ${ROOT_DIR}/tools
 UGLIFY_JS = ${TOOLS_DIR}/uglifyjs
+JSHINT = ${TOOLS_DIR}/jshint
 
 PREFIX = .
 DIST_DIR = ${PREFIX}/dist
 
 JS_ENGINE ?= `which node`
 COMPILER = ${JS_ENGINE} ${UGLIFY_JS}/uglifyjs --unsafe
+CHECKING = ${JS_ENGINE} ${JSHINT}/jshint
 
 BASE_FILES = ${LIB_DIR}/fea.js \
 			 ${LIB_DIR}/utils.js \
@@ -57,7 +59,12 @@ ${FEA_MIN}: ${FEA}
 	fi
 
 lint: fea
-	@echo "Checking Fea against JSLint..."
+	@@if test ! -z ${JS_ENGINE}; then \
+		echo "Checking Fea against JSHint..."; \
+		${CHECKING}; \
+	else \
+		echo "You must have NodeJs installed in order to minify Fea."; \
+	fi
 
 clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}

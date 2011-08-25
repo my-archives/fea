@@ -30,7 +30,7 @@ VER = sed "s/@VERSION@/${FEA_VER}/"
 DATE = $(shell git log -1 --pretty=format:%ad)
 DATE_SED = sed "s/@DATE@/${DATE}/"
 
-all: start fea min lint
+all: start fea min hint
 	@@echo "Fea build complete."
 
 start:
@@ -58,16 +58,16 @@ ${FEA_MIN}: ${FEA}
 		echo "You must have NodeJs installed in order to minify Fea."; \
 	fi
 
-lint: fea
+hint: fea
 	@@if test ! -z ${JS_ENGINE}; then \
 		echo "Checking Fea against JSHint..."; \
 		${CHECKING}; \
 	else \
-		echo "You must have NodeJs installed in order to minify Fea."; \
+		echo "You must have NodeJs installed in order to check Fea."; \
 	fi
 
 clean:
 	@@echo "Removing Distribution directory:" ${DIST_DIR}
 	@@rm -rf ${DIST_DIR}
 
-.PHONY: all fea clean lint min
+.PHONY: all fea clean hint min

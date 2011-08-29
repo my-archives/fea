@@ -3,9 +3,10 @@
 
 var JSHINT = require('./lib/jshint').JSHINT,
     print = require('sys').print,
-    src = require('fs').readFileSync(__dirname + '/../../build/dist/fea.js', 'utf8');
+    src = require('fs').readFileSync(__dirname + '/../../build/dist/fea.js', 'utf8')
+    config = require('fs').readFileSync(__dirname + '/config.json');
 
-JSHINT(src, {evil: true, forin: true, maxerr: 100, laxbreak: true});
+JSHINT(src, eval(config));
 
 var ok = {
 	"Expected an identifier and instead saw 'undefined' (a reserved word).": true,

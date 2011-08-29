@@ -73,6 +73,7 @@ var appAfter3 = new Advice({name: 'app after 3'}, function (){
 app = app.addHandler(appAfter3);
 
 console.log(app.handle());
+console.dir(app);
 
 console.log('----------')
 
@@ -84,3 +85,5 @@ app = app.removeHandler(appAround1);
 app = app.removeHandler(appAround2);
 
 console.log(app.handle(1, 2, 3));
+
+console.dir(app);

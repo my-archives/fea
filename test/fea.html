@@ -1,0 +1,109 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <script src="js/fea.js"></script>
+    <script>
+      var App = new Fea.Kernel.App();
+      var Method = Fea.Aop.Method;
+      var Handler = Fea.Aop.Handler;
+      //var define = Fea.Kernel.define;
+      App.register('module-1', function(sandbox) {
+        //this.a = 1;
+        //sandbox.a = 10;
+        return {
+          init: function() {
+            console.log('module-1');
+            //console.log(sandbox);
+            //console.log('this.a + 10: ', this.a + 10);
+            var o = {
+              on: function () {
+                console.log('o.on ...')
+                return sandbox.on.apply(sandbox, arguments);
+              }
+            };
+
+            var h = Handler.getInstance(o, 'on');
+
+            h.before(function(){
+              console.log('before ---- ')
+            });
+
+            h.after(function(){
+              console.log('after ---- ')
+            });
+
+            h.around(function(advice, args){
+              console.log('around --- ')
+              advice.exec.apply(advice, args);
+              console.log('around --- ')
+            });
+
+            console.dir(h);
+
+            h.exec(':click', function(data){
+              console.log('module-1__*:click', data);
+            });
+
+            h.exec('post:click', function(data){
+              console.log('module-1__post:click', data);
+            });
+
+            /*sandbox.on(':click', function(data) {
+              console.log('module-1__*:click', data);
+            });
+
+            sandbox.Global.on(':click', function(data){
+              console.log('global__*:click', data);
+            });
+            */
+
+            //console.dir(sandbox.Global);
+            sandbox.once('post:click', function(data) {
+              //console.log(this.a);
+              console.log('module-1-once__post:click', data);
+            });
+
+            sandbox.fire(':click', {a:2});
+            //sandbox.fire(':click', {a:3});
+            //sandbox.detachAll();
+            //sandbox.fire(':click', {a:4});
+            //sandbox.unListen('post:click');
+            //console.dir(sandbox.listeners);
+            this.ok();
+          },
+          ok: function() {
+            console.log('ok');
+          },
+          destroy: function() {
+            console.log('module-1: destroy.')
+            //console.dir(sandbox.listeners);
+            //sandbox.unListen('*:*');
+            //console.dir(sandbox.listeners);
+          }
+        };
+      });
+
+      App.register('module-2', function(sandbox) {
+          this.init = function() {
+            console.log('module-2');
+            //console.log(sandbox);
+            sandbox.on(':click', function(data) {
+              console.log('module-2__*:click', data);
+            });
+            sandbox.fire('post:click', {hello: 'Fea'});
+            sandbox.Global.fire(':click', {a:222});
+            //console.dir(sandbox.Global);
+          }
+      });
+
+      //App.register('module-1');
+      //App.start('module-1');
+      //App.stop('module-1');
+      //App.start('module-1');
+      //App.register('module-2');
+      //App.start('module-2');
+      App.startAll();
+    </script>
+  </body>
+</html>

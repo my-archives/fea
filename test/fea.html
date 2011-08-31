@@ -6,6 +6,7 @@
     <script>
       var App = new Fea.Kernel.App();
       var Method = Fea.Aop.Method;
+      var Prevent = Fea.Aop.Prevent;
       var Handler = Fea.Aop.Handler;
       //var define = Fea.Kernel.define;
       App.register('module-1', function(sandbox) {
@@ -25,8 +26,13 @@
 
             var h = Handler.getInstance(o, 'on');
 
-            h.before(function(){
+            h.before(function(advice, args){
               console.log('before ---- ')
+              //console.log(advice)
+              // deny 'post:click' type
+              if (args[0] == 'post:click') {
+                return new Prevent('stop');
+              }
             });
 
             h.after(function(){
@@ -42,21 +48,20 @@
             console.dir(h);
 
             h.exec(':click', function(data){
-              console.log('module-1__*:click', data);
+              console.log('module-1__*:click 1', data);
             });
 
             h.exec('post:click', function(data){
               console.log('module-1__post:click', data);
             });
 
-            /*sandbox.on(':click', function(data) {
-              console.log('module-1__*:click', data);
+            sandbox.on(':click', function(data) {
+              console.log('module-1__*:click 2', data);
             });
 
             sandbox.Global.on(':click', function(data){
               console.log('global__*:click', data);
             });
-            */
 
             //console.dir(sandbox.Global);
             sandbox.once('post:click', function(data) {

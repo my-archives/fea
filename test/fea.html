@@ -61,7 +61,7 @@
 
             sandbox.Global.on(':click', function(data){
               console.log('global__*:click', data);
-            });
+            }, sandbox);
 
             //console.dir(sandbox.Global);
             sandbox.once('post:click', function(data) {

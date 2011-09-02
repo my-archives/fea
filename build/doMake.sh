@@ -1,2 +1,2 @@
 #! /bin/bash
-make clean && make && cp dist/* ../test/js/
+make clean && make && echo "cp dist/* ../test/js/" && cp dist/* ../test/js/

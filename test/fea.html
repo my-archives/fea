@@ -9,7 +9,7 @@
       var Prevent = Fea.Aop.Prevent;
       var Handler = Fea.Aop.Handler;
       //var define = Fea.Kernel.define;
-      App.register('module-1', function(sandbox) {
+      App.use('module-1', function(sandbox) {
         //this.a = 1;
         //sandbox.a = 10;
         return {
@@ -89,7 +89,7 @@
         };
       });
 
-      App.register('module-2', function(sandbox) {
+      App.add('module-2', function(sandbox) {
           this.init = function() {
             console.log('module-2');
             //console.log(sandbox);
@@ -102,7 +102,7 @@
           }
       });
 
-      App.startAll();
+      App.useAll();
     </script>
   </body>
 </html>

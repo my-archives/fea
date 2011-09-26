@@ -9,11 +9,16 @@
         <script>
             module('Module DomReady');
             test('test dom ready', function () {
-                var num;
+                var num1, num2;
                 Fea.domReady(function () {
-                    num = ~~document.getElementById('num').innerHTML;
+                    num1 = ~~document.getElementById('num').innerHTML;
+                    Fea.domReady(function () {
+                        document.getElementById('num').innerHTML = 11;
+                        num2 = ~~document.getElementById('num').innerHTML;
+                        equal(num2, 11);
+                    });
                 });
-                equal(num, 10);
+                equal(num1, 10);
             });
         </script>
     </head>

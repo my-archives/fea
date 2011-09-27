@@ -8,8 +8,8 @@
         <script src="js/fea.js"></script>
         <script>
             //Fea.domReady(function () {
-                module('Module Loader');
-                test('test Loader', function () {
+                module('Module Loader JS');
+                test('loading JS', function () {
                     expect(3);
                     stop();
                     Fea.Loader({
@@ -39,18 +39,34 @@
                 });
             //});
 
-        Fea.Loader({
-            url: 'css/a.css',
-            callback: function () {
-                alert('a');
-            }
-        });
+        module('Module Loader CSS');
+        test('loading css', function () {
+            expect(3);
+            stop();
+            Fea.Loader({
+                url: 'css/a.css',
+                callback: function () {
+                    ok(true, 'a.css is loaded.');
+                    start();
+                    stop();
+                    Fea.Loader({
+                        url: 'css/c.css',
+                        callback: function () {
+                            ok(true, 'c.css is loaded.');
+                            start();
+                        }
+                    });
+                }
+            });
 
-        Fea.Loader({
-            url: 'css/b.css',
-            callback: function () {
-                alert('b');
-            }
+            stop();
+            Fea.Loader({
+                url: 'css/b.css',
+                callback: function () {
+                    ok(true, 'b.css is loaded.');
+                    start();
+                }
+            });
         });
         </script>
     </head>

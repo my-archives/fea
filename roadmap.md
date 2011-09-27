@@ -31,6 +31,7 @@ Road Map
         1. 结合后端尽快搭出可用版本
         2. <del>引入单元测试 qunit</del>
         3. <del>提供 dom ready 方法</del>
+        4. <del>提供 loader 方法，动态载入 css、js </del>
 * __10__
     * 03 ~ 07
     * 10 ~ 14

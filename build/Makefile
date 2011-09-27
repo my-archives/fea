@@ -13,9 +13,9 @@ COMPILER = ${JS_ENGINE} ${UGLIFY_JS}/uglifyjs --unsafe
 CHECKING = ${JS_ENGINE} ${JSHINT}/jshint
 
 BASE_FILES = ${LIB_DIR}/fea.js \
+	${LIB_DIR}/utils.js \
 	${LIB_DIR}/domready.js \
 	${LIB_DIR}/loader.js \
-	${LIB_DIR}/utils.js \
 	${LIB_DIR}/aop.js \
 	${LIB_DIR}/eventx.js \
 	${LIB_DIR}/kernel.js \

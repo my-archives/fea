@@ -3,22 +3,55 @@
     <head>
         <meta charset="UTF-8" />
         <title>QUnit Test Suite</title>
-        <link rel="stylesheet" href="../tools/qunit/qunit/qunit.css" type="text/css" media="screen">
-        <script type="text/javascript" src="../tools/qunit/qunit/qunit.js"></script>
+        <link rel="stylesheet" href="css/qunit.css" type="text/css" media="screen">
+        <script type="text/javascript" src="js/qunit.js"></script>
         <script src="js/fea.js"></script>
         <script>
-            module('Module Loader');
-            test('test Loader', function () {
-                expect(1);
-                stop();
-                Fea.Loader({
-                    url: 'js/a.js',
-                    callback: function () {
-                        equal(a, 101);
-                        start();
-                    }
+            //Fea.domReady(function () {
+                module('Module Loader');
+                test('test Loader', function () {
+                    expect(3);
+                    stop();
+                    Fea.Loader({
+                        url: 'js/a.js',
+                        callback: function () {
+                            equal(a, 101);
+                            start();
+                            stop();
+                            Fea.Loader({
+                                url: 'js/b.js',
+                                callback: function () {
+                                    equal(b, 136);
+                                    start();
+                                }
+                            });
+                        }
+                    });
+                    
+                    stop();
+                    Fea.Loader({
+                        url: 'js/c.js',
+                        callback: function () {
+                            equal(c, 'c');
+                            start();
+                        }
+                    });
                 });
-            });
+            //});
+
+        Fea.Loader({
+            url: 'css/a.css',
+            callback: function () {
+                alert('a');
+            }
+        });
+
+        Fea.Loader({
+            url: 'css/b.css',
+            callback: function () {
+                alert('b');
+            }
+        });
         </script>
     </head>
     <body>

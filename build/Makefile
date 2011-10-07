@@ -26,7 +26,10 @@ BASE_FILES = ${LIB_DIR}/fea.js \
 	${LIB_DIR}/app.js \
 	${LIB_DIR}/pagebox.js \
 	${LIB_DIR}/pagemod.js \
-	${LIB_DIR}/widget.js
+	${LIB_DIR}/widget.js \
+	${LIB_DIR}/ajax.js \
+	${LIB_DIR}/pagelet.js \
+	${LIB_DIR}/bigpipe.js
 
 FEA = ${DIST_DIR}/fea.js
 FEA_MIN = ${DIST_DIR}/fea.min.js

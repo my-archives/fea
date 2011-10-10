@@ -14,6 +14,23 @@
 
             var Bigpipe = new Fea.BigPipe();
 
+            function asyncInnerHTML(HTML, callback) {
+                var temp = document.createElement('div'),
+                    frag = document.createDocumentFragment();
+                temp.innerHTML = HTML;
+                (function(){
+                    if(temp.firstChild) {
+                        frag.appendChild(temp.firstChild);
+                        setTimeout(arguments.callee, 0);
+                    } else {
+                        callback(frag);
+                    }
+                })();
+            }
+            //http://www.gracecode.com/archives/2963/
+            //http://james.padolsey.com/javascript/fastest-way-to-build-an-html-string/
+            //http://www.quirksmode.org/dom/innerhtml.html
+
         </script>
     </head>
     <body>
@@ -35,16 +52,28 @@
             });
         </script>
         <script>
+            var iii = 0;
             Bigpipe.onArrive({
                 id: 'pagelet-2',
                 js: 'js/pagelet-2.js',
-                css: 'css/pagelet-2.css',
+                css: ['css/pagelet-2.css', 'css/pagelet-2.1.css'],
                 content: {
                     url: 'pagelet-2_templage.html',
                     success: function (data) {
-                        var p = document.getElementById('pagelet-2');
-                        p.innerHTML = data;
+                        iii++;
+                        var dd = document.getElementById('pagelet-2');
+                        $(dd).html(data);
+                        //alert(iii);
+                        //alert(dd.innerHTML);
                         //alert(data);
+                        //dd.innerHTML = data;
+                        //alert(dd.innerHTML);
+                        /*asyncInnerHTML(data, function (frag) {
+                            dd.appendChild(frag);
+                            var d = $('#pagelet-2_tmp');
+                            alert(d.attr('type'));
+                        });
+                        */
                     }
                 }
             });

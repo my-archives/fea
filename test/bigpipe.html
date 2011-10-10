@@ -11,6 +11,9 @@
             module('Module Bigpipe');
             test('test bigpipe', function () {
             });
+
+            var Bigpipe = new Fea.BigPipe();
+
         </script>
     </head>
     <body>
@@ -23,5 +26,28 @@
 		<div id="pagelet-1" class="mod"></div>
 		<div id="pagelet-2" class="mod"></div>
 		<div id="pagelet-3" class="mod"></div>
+        <script>
+            Bigpipe.onArrive({
+                id: 'pagelet-1',
+                js: 'js/pagelet-1.js',
+                css: 'css/pagelet-1.css',
+                content: '<p>Hello PageLet-One.</p>'
+            });
+        </script>
+        <script>
+            Bigpipe.onArrive({
+                id: 'pagelet-2',
+                js: 'js/pagelet-2.js',
+                css: 'css/pagelet-2.css',
+                content: {
+                    url: 'pagelet-2_templage.html',
+                    success: function (data) {
+                        var p = document.getElementById('pagelet-2');
+                        p.innerHTML = data;
+                        //alert(data);
+                    }
+                }
+            });
+        </script>
     </body>
 </html>
